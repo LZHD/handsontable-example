@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as Handsontable from 'handsontable';
+import * as Handsontable from '@handsontable-pro/angular';
 
 @Component({
   selector: 'app-root',
