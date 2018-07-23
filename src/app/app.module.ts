@@ -10,7 +10,7 @@ import {HotTableModule} from '@handsontable-pro/angular';
   ],
   imports: [
     BrowserModule,
-    HotTableModule
+    HotTableModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
