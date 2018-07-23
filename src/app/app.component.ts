@@ -9,7 +9,8 @@ import {HotTableRegisterer} from '@handsontable-pro/angular';
   providers: [HotTableRegisterer]
 })
 export class AppComponent {
-  instance: string = 'hot';
+  instance = 'hot';
+  language = 'ff';
   dataset: any[] = Handsontable.helper.createSpreadsheetData(10, 10);
 
   constructor(private hotRegisterer: HotTableRegisterer) {}
