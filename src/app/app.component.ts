@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as Handsontable from 'handsontable-pro';
 import {HotTableRegisterer} from '@handsontable-pro/angular';
+import 'handsontable-pro/languages/zh-CN';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,17 @@ import {HotTableRegisterer} from '@handsontable-pro/angular';
 })
 export class AppComponent {
   instance = 'hot';
-  language = 'ff';
-  dataset: any[] = Handsontable.helper.createSpreadsheetData(10, 10);
+  language = 'zh-CN';
+  dataset: any[] = [
+    {id: 1, name: 'Ted Right', address: 'Wall Street'},
+    {id: 2, name: 'Frank Honest', address: 'Pennsylvania Avenue'},
+    {id: 3, name: 'Joan Well', address: 'Broadway'},
+    {id: 4, name: 'Gail Polite', address: 'Bourbon Street'},
+    {id: 5, name: 'Michael Fair', address: 'Lombard Street'},
+    {id: 6, name: 'Mia Fair', address: 'Rodeo Drive'},
+    {id: 7, name: 'Cora Fair', address: 'Sunset Boulevard'},
+    {id: 8, name: 'Jack Right', address: 'Michigan Avenue'},
+  ];
 
   constructor(private hotRegisterer: HotTableRegisterer) {}
 
@@ -46,5 +56,12 @@ export class AppComponent {
       columnDelimiter: ';',       // default ','
       range: [1, 1, 6, 6]         // [startRow, endRow, startColumn, endColumn]
     });
+  }
+
+  searchValue($event) {
+    const hotInstance = this.hotRegisterer.getInstance(this.instance);
+    const searchPlugin = hotInstance.getPlugin('Search');
+    searchPlugin.query($event.target.value);
+    hotInstance.render();
   }
 }
