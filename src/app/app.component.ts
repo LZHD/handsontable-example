@@ -38,17 +38,19 @@ export class AppComponent {
     const hotInstance = this.hotRegisterer.getInstance(this.instance);
     const exportPlugin = hotInstance.getPlugin('exportFile');
 
-    // export as a string
-    exportPlugin.exportAsString('csv');
+    // 导出作为字符串
+    const exportString = exportPlugin.exportAsString('csv');
+    console.log(exportString);
 
-    // export as a blob object
-    exportPlugin.exportAsBlob('csv');
+    // 导出作为二进制Blob
+    const exportBlob = exportPlugin.exportAsBlob('csv');
+    console.log(exportBlob);
 
-    // export to downloadable file (named: MyFile.csv)
+    // 导出作为MyFile.csv的文件
     exportPlugin.downloadFile('csv', {filename: 'MyFile'});
 
-    // export as a string (with specified data range):
-    exportPlugin.exportAsString('csv', {
+    // 导出作为字符串（自定义导出规则）
+    const exportStrRange = exportPlugin.exportAsString('csv', {
       exportHiddenRows: true,     // default false
       exportHiddenColumns: true,  // default false
       columnHeaders: true,        // default false
@@ -56,6 +58,7 @@ export class AppComponent {
       columnDelimiter: ';',       // default ','
       range: [1, 1, 6, 6]         // [startRow, endRow, startColumn, endColumn]
     });
+    console.log(exportStrRange);
   }
 
   searchValue($event) {
